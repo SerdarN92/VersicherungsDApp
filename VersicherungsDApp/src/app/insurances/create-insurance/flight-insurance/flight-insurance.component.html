@@ -1,0 +1,68 @@
+<form [formGroup]="flightInsuranceFormGroup">
+  <div class="card">
+    <div class="card-header">
+      Flugverspätungsversicherung erstellen
+    </div>
+    <div class="card-body password-box h-100">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item w-100">
+          <div>
+            <div class="form-group row">
+              <label for="prename" class="col-sm-12 col-md-6 col-lg-3">Vorname</label>
+              <div class="col-sm-12 col-md-6 col-lg-9">
+                <input
+                  type="text"
+                  id="prename"
+                  class="form-control"
+                  placeholder="Vorname"
+                  [class.invalid]="!flightInsuranceFormGroup.controls.prename.valid"
+                  formControlName="prename">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="lastname" class="col-sm-12 col-md-6 col-lg-3">Name</label>
+              <div class="col-sm-12 col-md-6 col-lg-9">
+                <input
+                  type="text"
+                  id="lastname"
+                  class="form-control"
+                  placeholder="Name"
+                  [class.invalid]="!flightInsuranceFormGroup.controls.lastname.valid"
+                  formControlName="lastname">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="lastname" class="col-sm-12 col-md-6 col-lg-3">Abreisedatum</label>
+              <div class="col-sm-12 col-md-6 col-lg-9">
+                <div class="input-group">
+                  <input class="form-control" placeholder="dd-mm-yyyy"
+                         name="dp" formControlName="dateOfDeparture" ngbDatepicker #d="ngbDatepicker">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="departureAirport" class="col-sm-12 col-md-6 col-lg-3">Abflughafen</label>
+              <div class="col-sm-12 col-md-6 col-lg-9">
+                <input id="departureAirport" type="text" class="form-control" formControlName="departureAirport" [ngbTypeahead]="search"/>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="arrivalAirport" class="col-sm-12 col-md-6 col-lg-3">Abflughafen</label>
+              <div class="col-sm-12 col-md-6 col-lg-9">
+                <input id="arrivalAirport" type="text" class="form-control" formControlName="arrivalAirport" [ngbTypeahead]="search"/>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</form>
+<div class="form-group mt-2 pull-right">
+  <button class="btn btn-primary" [disabled]="!flightInsuranceFormGroup.valid">
+    Versicherung erstellen
+  </button>
+</div>

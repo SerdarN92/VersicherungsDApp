@@ -1,0 +1,29 @@
+<div class="container mt-5 mb-3" id="body">
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-3">
+      <nav class="list-group cursor-pointer sidebar">
+        <div
+          class="list-group-item side-list-item"
+          routerLinkActive="side-list-item-active"
+          routerLink='/create-insurance/weather'>
+          <div class="sidebar-title">Urlaubswetterversicherung</div>
+        </div>
+        <div
+          class="list-group-item side-list-item "
+          routerLinkActive="side-list-item-active"
+          routerLink='/create-insurance/flight'>
+          <div class="sidebar-title">Flugverspätungsversicherung</div>
+        </div>
+        <div
+          class="list-group-item side-list-item "
+          routerLinkActive="side-list-item-active"
+          routerLink='/create-insurance/life'>
+          <div class="sidebar-title">Risikolebensversicherung</div>
+        </div>
+      </nav>
+    </div>
+    <div class="col-sm-6 col-md-8 col-lg-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Contract-Addresse</th>
+    <th>Urlaubsbeginn</th>
+    <th>Urlaubsende</th>
+    <th>Urlaubsort</th>
+    <th>Trigger (liter pro m² am Tag)</th>
+    <th>Vertrag auslösbar</th>
+    <th>Auszahlung Kunde</th>
+    <th>Auszahlung Versicherung</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let contract of contracts">
+    <th scope="row">{{contract[0]}}</th>
+    <th>{{timeConverter(contract[1])}}</th>
+    <th>{{timeConverter(contract[2])}}</th>
+    <th>{{contract[3]}}</th>
+    <th>mindestens {{contract[4]}} liter/m²</th>
+    <th>{{contract[5] ? 'Ja' : 'Nein'}}</th>
+    <th>{{contract[6] ? 'Ja' : 'Nein'}}</th>
+    <th>{{contract[7] ? 'Ja' : 'Nein'}}</th>
+    <th>
+      <button *ngIf="!contract[6] && !contract[7]" class="btn btn-primary" (click)="triggerContract(contract[0])">
+        Auszahlung prüfen
+      </button>
+      <button *ngIf="contract[6] || contract[7]" [disabled]="true" class="btn btn-success" (click)="triggerContract(contract[0])">
+        Auszahlung erfolgreich
+      </button>
+    </th>
+  </tr>
+  </tbody>
+</table>
+<ng4-loading-spinner [timeout]="30000"> </ng4-loading-spinner>

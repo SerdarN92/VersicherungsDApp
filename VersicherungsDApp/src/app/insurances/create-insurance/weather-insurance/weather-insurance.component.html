@@ -1,0 +1,140 @@
+<form [formGroup]="weatherInsuranceFormGroup">
+  <div class="card">
+    <div class="card-header">
+      Urlaubswetterversicherung
+    </div>
+    <div class="card-body password-box h-100">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item w-100">
+          <div class="form-group row">
+            <label for="dateRange" class="col-sm-12 col-md-6 col-lg-3">Urlaubszeitraum:</label>
+            <div id="dateRange" class="col-sm-12 col-md-6 col-lg-3">
+              <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t"
+                              outsideDays="hidden">
+              </ngb-datepicker>
+              <ng-template #t let-date let-focused="focused">
+              <span class="custom-day"
+                    [class.focused]="focused"
+                    [class.range]="isRange(date)"
+                    [class.faded]="isHovered(date) || isInside(date)"
+                    (mouseenter)="hoveredDate = date"
+                    (mouseleave)="hoveredDate = null">
+                {{ date.day }}
+              </span>
+              </ng-template>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="place" class="col-sm-12 col-md-6 col-lg-3">Urlaubsort:</label>
+            <div id="place" class="col-sm-12 col-md-6 col-lg-9">
+              <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline" id="dropdownBasic2" ngbDropdownToggle>{{textPlace}}</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                  <button class="dropdown-item" *ngFor="let item of placeSelections" (click)="textPlace = item">
+                    {{item}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="trigger" class="col-sm-12 col-md-6 col-lg-3">Niederschlag h/m² am Tag:</label>
+            <div id="trigger" class="col-sm-12 col-md-6 col-lg-9">
+              <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline" id="dropdownBasic" ngbDropdownToggle>{{textTrigger}}</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic">
+                  <button class="dropdown-item" *ngFor="let item of triggerSelections" (click)="textTrigger = item.text; selectedTrigger = item.trigger">
+                    {{item.text}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="payout" class="col-sm-12 col-md-6 col-lg-3">Versicherungssumme in €</label>
+            <div class="col-sm-12 col-md-6 col-lg-9">
+              <input
+                type="number"
+                id="payout"
+                class="form-control"
+                formControlName="payout">
+            </div>
+          </div>
+          <div *ngIf="weatherInsuranceFormGroup.value.etherPriceInEUR" class="form-group row">
+            <label for="etherPriceInEUR" class="col-sm-12 col-md-6 col-lg-3">Versicherungssumme in ETH</label>
+            <div class="col-sm-12 col-md-6 col-lg-9">
+              <input
+                type="number"
+                id="etherPriceInEUR"
+                class="form-control"
+                formControlName="etherPriceInEUR">
+            </div>
+          </div>
+          <hr>
+        </li>
+      </ul>
+    </div>
+  </div>
+</form>
+<div *ngIf="offerInETH" class="card mt-3">
+  <div class="card-header">
+    Vorgeschlagene Versicherungsprämie
+  </div>
+  <div class="card-body password-box h-100">
+    <div class="form-group row">
+      <label for="offerInETH" class="col-sm-12 col-md-6 col-lg-3">Prämie</label>
+      <div class="col-sm-10 col-md-4 col-lg-7">
+        <input
+          type="text"
+          id="offerInETH"
+          class="form-control"
+          disabled="true"
+          [(ngModel)]="offerInETH">
+      </div>
+      <div class="col-sm-2 col-md-2 col-lg-2">
+        in ETH
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="offerInEUR" class="col-sm-12 col-md-6 col-lg-3"></label>
+      <div class="col-sm-10 col-md-4 col-lg-7">
+        <input
+          type="text"
+          id="offerInEUR"
+          class="form-control"
+          disabled="true"
+          [(ngModel)]="offerInEUR">
+      </div>
+      <div class="col-sm-2 col-md-2 col-lg-2">
+        in €
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="form-group mt-2 pull-right">
+  <button *ngIf="!offerInETH" class="btn btn-primary"
+          (click)="getPrice()">
+    Versicherung prüfen
+  </button>
+  <button *ngIf="offerInETH && !status" class="btn btn-primary"
+          (click)="payConfigAndOffer()">
+    Versicherung bezahlen und abschließen
+  </button>
+  <button *ngIf="status === 'loading'" class="btn btn-info btn-md">
+    <i class="fa fa-spinner fa-spin"></i>
+    Loading ...
+  </button>
+  <button *ngIf="status === 'failed'" [disabled]="true" class="btn btn-info btn-md">
+    Zahlung von Prämie fehlgeschlagen!
+  </button>
+  <button *ngIf="status === 'success'" [disabled]="true" class="btn btn-success">
+    Prämie erfolgreich bezahlt
+  </button>
+  <button *ngIf="status === 'success'" class="btn btn-primary" (click)="completeInsurance()">
+    Versicherung abschließen
+  </button>
+</div>
+
+

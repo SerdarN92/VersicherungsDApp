@@ -1,0 +1,136 @@
+<form [formGroup]="lifeInsuranceFormGroup">
+  <div class="card">
+    <div class="card-header">
+      Risikolebensversicherung erstellen
+    </div>
+    <div class="card-body password-box h-100">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item w-100">
+          <div>
+            <!--<div class="form-group row">-->
+            <!--<label for="prename" class="col-sm-12 col-md-6 col-lg-3">{{'prename' | translate}}</label>-->
+            <!--<div class="col-sm-12 col-md-6 col-lg-9">-->
+            <!--<input-->
+            <!--type="text"-->
+            <!--id="prename"-->
+            <!--class="form-control"-->
+            <!--placeholder="{{ 'firstname' | translate}}"-->
+            <!--[class.invalid]="!editProfileForm.controls.prename.valid"-->
+            <!--formControlName="prename">-->
+            <!--<div *ngIf="errors['prename']" class="alert alert-danger mt-1" role="alert">-->
+            <!--{{ errors['prename'] }}-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group row">-->
+            <!--<label for="lastname" class="col-sm-12 col-md-6 col-lg-3">{{'lastname' | translate}}</label>-->
+            <!--<div class="col-sm-12 col-md-6 col-lg-9">-->
+            <!--<input-->
+            <!--type="text"-->
+            <!--id="lastname"-->
+            <!--class="form-control"-->
+            <!--placeholder="{{ 'lastname' | translate}}"-->
+            <!--[class.invalid]="!editProfileForm.controls.lastname.valid"-->
+            <!--formControlName="lastname">-->
+            <!--<div *ngIf="errors['lastname']" class="alert alert-danger mt-1" role="alert">-->
+            <!--{{ errors['lastname'] }}-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group row">-->
+            <!--<label class="col-sm-12 col-md-6 col-lg-3">{{'gender' | translate}}</label>-->
+            <!--<div class="col-sm-12 col-md-6 col-lg-9">-->
+            <!--<div class="row">-->
+            <!--<div class="col-2">-->
+            <!--<label class="radio inline" for="gender-0">-->
+            <!--<input name="gender" id="gender-0" value="male" checked="checked" type="radio"-->
+            <!--formControlName="gender">-->
+            <!--<i class="fa fa-mars ml-2"></i>-->
+            <!--</label>-->
+            <!--</div>-->
+            <!--<div class="col-2">-->
+            <!--<label class="radio inline" for="gender-1">-->
+            <!--<input name="gender" id="gender-1" value="female" type="radio" formControlName="gender">-->
+            <!--<i class="fa fa-venus ml-2"></i>-->
+            <!--</label>-->
+            <!--</div>-->
+            <!--<div class="col-2">-->
+            <!--<label class="radio inline" for="gender-2">-->
+            <!--<input name="gender" id="gender-2" value="trans" type="radio" formControlName="gender">-->
+            <!--<i class="fa fa-transgender ml-2"></i>-->
+            <!--</label>-->
+            <!--</div>-->
+            <!--<div *ngIf="errors['gender']" class="alert alert-danger mt-1" role="alert">-->
+            <!--{{ errors['gender'] }}-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group row">-->
+            <!--<label for="birthdate" class="col-sm-12 col-md-6 col-lg-3">{{'birthdate' | translate}}:</label>-->
+            <!--<div class="col-sm-12 col-md-6 col-lg-9">-->
+            <!--<mat-form-field>-->
+            <!--<input id="birthdate" matInput [matDatepicker]="dp" formControlName="birthdate">-->
+            <!--<mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>-->
+            <!--<mat-datepicker #dp></mat-datepicker>-->
+            <!--</mat-form-field>-->
+            <!--</div>-->
+            <!--<div *ngIf="errors['birthdate']" class="alert alert-danger mt-1" role="alert">-->
+            <!--{{ errors['birthdate'] }}-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group row">-->
+            <!--<label for="city" class="col-sm-12 col-md-6 col-lg-3">{{'city' | translate}}:</label>-->
+            <!--<div class="col-sm-12 col-md-6 col-lg-9">-->
+            <!--<input id="city"-->
+            <!--appGooglePlaces-->
+            <!--placeholder="{{ 'type_city' | translate}}"-->
+            <!--autocorrect="off"-->
+            <!--autocapitalize="off"-->
+            <!--spellcheck="off"-->
+            <!--type="text"-->
+            <!--class="form-control"-->
+            <!--formControlName="city"-->
+            <!--(select)="citySelected($event)">-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group row">-->
+            <!--<label for="language" class="col-sm-12 col-md-6 col-lg-3">{{'language' | translate}}:</label>-->
+            <!--<div class="col-sm-12 col-md-6 col-lg-9">-->
+            <!--<ul id="language" class="list-unstyled text-small">-->
+            <!--<div ngbDropdown class="d-inline-block w-100">-->
+            <!--<button class="btn btn-outline-secondary w-100" id="languageList" ngbDropdownToggle>-->
+            <!--{{currentLanguage}}-->
+            <!--</button>-->
+            <!--<div ngbDropdownMenu aria-labelledby="languageList" class="w-100">-->
+            <!--<button class="dropdown-item w-100"-->
+            <!--*ngFor="let language of languages"-->
+            <!--(click)="switchLanguage(language)"-->
+            <!--(pan)="switchLanguage(language)">-->
+            <!--{{ language.viewValue }}-->
+            <!--</button>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</ul>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group row">-->
+            <!--<label for="dancestyles" class="col-sm-12 col-md-6 col-lg-3">{{'dancestyles' | translate}}:</label>-->
+            <!--<div id="dancestyles" class="col-sm-12 col-md-6 col-lg-9">-->
+            <!--<app-auto-input-chiplist [placeHolder]="'placeholder_addDance'"-->
+            <!--[allItems]="allDanceStyles"-->
+            <!--(selectedItems)="dancestylesSelected($event)"-->
+            <!--[items]="userDanceStyles"></app-auto-input-chiplist>-->
+            <!--</div>-->
+            <!--</div>-->
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</form>
+<div class="form-group mt-2 pull-right">
+  <button class="btn btn-primary" [disabled]="!lifeInsuranceFormGroup.valid">
+    Versicherung erstellen
+  </button>
+</div>
